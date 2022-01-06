@@ -1,0 +1,20 @@
+price = getPurchasedServerCost(args[1]);
+money = getServerMoneyAvailable("home");
+hostname = args[0];
+ram = args[1];
+thread = (0.75 * ram) / 2;
+script = "hack-n00dles.script";
+
+
+if
+	(price > money) {
+	tprint("Money Available: ", money, " - ", "Server Cost: ", price);
+}
+
+else {
+	tprint("Purchase Successful");
+	purchaseServer(hostname, ram);
+	scp(script, hostname);
+	exec(script, hostname, thread);
+
+}
