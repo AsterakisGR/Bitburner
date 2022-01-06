@@ -1,20 +1,22 @@
-price = getPurchasedServerCost(args[1]);
-money = getServerMoneyAvailable("home");
-hostname = args[0];
-ram = args[1];
-thread = (0.75 * ram) / 2;
-script = "hack-n00dles.script";
+//Adding the needed variables:
+
+price = getPurchasedServerCost(args[1]); // Imported while running the script
+money = getServerMoneyAvailable("home"); // Reads the available server on the existing army
+hostname = args[0]; // Imported while running the script
+ram = args[1]; // Imported while running the script
+thread = (0.75 * ram) / 2; // Calculates using Rule of 3 how many threads will be used when the Ram is imported
+script = "hack-n00dles.script"; // Script exists on the home server
 
 
 if
-	(price > money) {
-	tprint("Money Available: ", money, " - ", "Server Cost: ", price);
+	(price > money) { // If the price of the new server is more than the available money
+	tprint("Money Available: ", money, " - ", "Server Cost: ", price); // Prints in terminal how much money you have and how much does it cost.
 }
 
 else {
-	tprint("Purchase Successful");
-	purchaseServer(hostname, ram);
-	scp(script, hostname);
-	exec(script, hostname, thread);
+	tprint("Purchase Successful"); //Prints in terminal
+	purchaseServer(hostname, ram); //Purchases the server using the Hostname + Ram given by the user
+	scp(script, hostname); // Transfers the script into the purchased server
+	exec(script, hostname, thread); //Excecutes the script on the purchased server using the maximum threads available
 
 }
